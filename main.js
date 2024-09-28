@@ -1,29 +1,41 @@
-'use strict'; ///строгий режим в js 
+'use strict'; ///строгий режим в js
 
-const buttons = document.querySelectorAll('.button');
-const overlay = document.querySelector('.popup-bg');
-const popup = document.querySelector('.popup');
-const popupTitle = document.querySelector('.popup-title');
-const popupText = document.querySelector('.popup-text');
+const button1 = document.querySelector('.button--1');
+const button2 = document.querySelector('.button--2');
+const button3 = document.querySelector('.button--3');
+const dog = document.querySelector('.dog');
+const cat = document.querySelector('.cat');
+const imageDog = document.querySelector('.image-dog');
+const imageCat = document.querySelector('.image-cat');
 
-buttons.forEach(b => b.addEventListener('click', e => {
-  const target = e.target.closest('.box');
 
-  const title = target.querySelector('.box-title').textContent;
-  const text = target.querySelector('.box-text').textContent;
+button1.addEventListener('click', () => {
+  cat.classList.remove('active');
+  dog.classList.remove('active');
+  imageDog.classList.remove('active');
+  imageCat.classList.remove('active');
 
-  popupTitle.querySelector('h2').textContent = title;
-  popupText.textContent = text;
-
-  overlay.classList.add('popup-bg--active');
-  popup.classList.add('popup--active');
-}));
-
-overlay.addEventListener('click', e => {
-  const target = e.target.closest('.popup'); /// Ищет поиск в верх по классам
-
-  if (target) return;
-
-  overlay.classList.remove('popup-bg--active');
-  popup.classList.remove('popup--active');
+  imageCat.classList.remove('none');
+  cat.classList.remove('none');
+  dog.classList.remove('right');
 });
+
+button2.addEventListener('click', () => {
+  cat.classList.add('active');
+  dog.classList.add('active');
+  imageDog.classList.add('active');
+  imageCat.classList.add('active');
+
+  imageCat.classList.remove('none');
+  cat.classList.remove('none');
+  dog.classList.remove('right');
+})
+
+button3.addEventListener('click', () => {
+  cat.classList.add('none');
+
+  dog.classList.add('right');
+
+  imageDog.classList.add('active');
+  imageCat.classList.add('none');
+})
