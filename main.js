@@ -21,15 +21,39 @@ const drawCircle = `
   <div class="addCircle"></div>
 `;
 
-triangleBtn.addEventListener('click', (e) => {
-  const count = Number(input.value);
+function generateRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
-  if (!count) return;
-
-  for (let i = 0; i < count; i++) {
-    container.insertAdjacentHTML("beforeend",drawTriangle);
+function generateRandomSize() {
+  return {
+    width: generateRandomNumber(50, 200),
+    height: generateRandomNumber(40, 150),
+    left: generateRandomNumber(50,1400),
+    top: generateRandomNumber(100,600),
   }
+}
+
+function generateRandomSizeEvenly() {
+  const size = generateRandomNumber(50, 200);
+  
+  return {
+    width: size,
+    height: size,
+    left: size,
+    top: size,
+  }
+}
+
+
+container.addEventListener('click', e => { ///Удаление если есть shape
+  const {target} = e;
+
+  if (!target.classList.contains('shape')) return;
+
+  target.remove();
 })
+
 
 
 squareBtn.addEventListener('click', (e) => {
@@ -38,7 +62,44 @@ squareBtn.addEventListener('click', (e) => {
   if (!count) return;
 
   for (let i = 0; i < count; i++) {
-    container.insertAdjacentHTML("beforeend",drawSquare);
+    const s = document.createElement('div');
+
+    const {width, height} = generateRandomSizeEvenly();
+    const {left,top} = generateRandomSize();
+
+    s.classList.add('addSquare', 'shape');
+    s.style.width = `${width}px`;
+    s.style.height = `${height}px`; 
+    
+    s.style.position = 'absolute';
+    
+    s.style.left = `${left}px`;
+    s.style.top = `${top}px`;
+
+  container.appendChild(s);
+}
+})
+
+triangleBtn.addEventListener('click', (e) => {
+  const count = Number(input.value);
+
+  if (!count) return;
+
+  for (let i = 0; i < count; i++) {
+    const t = document.createElement('div');
+    
+    const {width, height,left,top} = generateRandomSize();
+
+    t.classList.add('addTriangle', 'shape');
+    t.style.width = `${width}px`;
+    t.style.height = `${height}px`;
+
+    t.style.position = 'absolute';
+
+    t.style.left = `${left}px`;
+    t.style.top = `${top}px`;
+
+    container.appendChild(t);
   }
 })
 
@@ -49,47 +110,21 @@ circleBtn.addEventListener('click', (e) => {
   if (!count) return;
 
   for (let i = 0; i < count; i++) {
-    container.insertAdjacentHTML("beforeend",drawCircle);
+    const crcl = document.createElement('div');
+
+    const {width, height} = generateRandomSizeEvenly();
+    const {left,top} = generateRandomSize();
+
+    crcl.classList.add('addCircle', 'shape');
+    crcl.style.width = `${width}px`;
+    crcl.style.height = `${height}px`;
+    
+    crcl.style.position = 'absolute';
+
+    crcl.style.left = `${left}px`;
+    crcl.style.top = `${top}px`;
+
+    container.appendChild(crcl);
   }
 })
 
-
-// const button1 = document.querySelector('.button--1');
-// const button2 = document.querySelector('.button--2');
-// const button3 = document.querySelector('.button--3');
-// const dog = document.querySelector('.dog');
-// const cat = document.querySelector('.cat');
-// const imageDog = document.querySelector('.image-dog');
-// const imageCat = document.querySelector('.image-cat');
-
-
-// button1.addEventListener('click', () => {
-//   cat.classList.remove('active');
-//   dog.classList.remove('active');
-//   imageDog.classList.remove('active');
-//   imageCat.classList.remove('active');
-
-//   imageCat.classList.remove('none');
-//   cat.classList.remove('none');
-//   dog.classList.remove('right');
-// });
-
-// button2.addEventListener('click', () => {
-//   cat.classList.add('active');
-//   dog.classList.add('active');
-//   imageDog.classList.add('active');
-//   imageCat.classList.add('active');
-
-//   imageCat.classList.remove('none');
-//   cat.classList.remove('none');
-//   dog.classList.remove('right');
-// })
-
-// button3.addEventListener('click', () => {
-//   cat.classList.add('none');
-
-//   dog.classList.add('right');
-
-//   imageDog.classList.add('active');
-//   imageCat.classList.add('none');
-// })

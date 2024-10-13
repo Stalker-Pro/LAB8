@@ -13,26 +13,40 @@
 }
 
 .addSquare{
-  width:100px;
-  height:100px;
   background-color:red;
-  border: solid 3px;
+  border: solid 2px;
+  opacity: 0.8;
+}
+
+.addSquare:hover{
+  transition: 0.3s;
+  background-color: #fffc1c;
 }
 
 .addTriangle{
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 80px solid blue;
+  background-color: blue;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  border: solid 2px;  
+  opacity: 0.8;
+}
+
+.addTriangle:hover{
+  transition: 0.3s;
+  background-color: #fffc1c;
 }
 
 .addCircle{
-  width: 100px;
-  min-height: 100px;
   border-radius: 50%;
   background-color: green;
+  border: solid 2px; 
+  opacity: 0.8;
 }
+
+.addCircle:hover{
+  transition: 0.3s;
+  background-color: #fffc1c;
+}
+
 
 button{
   padding: 0 10px;
